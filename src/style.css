@@ -28,6 +28,7 @@
     --radius-md: 0.375rem;
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -238,6 +239,9 @@
   .table {
     display: table;
   }
+  .h-0 {
+    height: calc(var(--spacing) * 0);
+  }
   .w-1 {
     width: calc(var(--spacing) * 1);
   }
@@ -310,6 +314,9 @@
   .rotate-90 {
     rotate: 90deg;
   }
+  .rotate-180 {
+    rotate: 180deg;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -339,6 +346,9 @@
   }
   .justify-start {
     justify-content: flex-start;
+  }
+  .overflow-hidden {
+    overflow: hidden;
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
@@ -539,6 +549,10 @@
     --tw-duration: 0.18s;
     transition-duration: 0.18s;
   }
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+  }
   .select-none {
     -webkit-user-select: none;
     user-select: none;
@@ -619,6 +633,26 @@
   .\[\&\>\*\:not\(\:last-child\)\]\:pb-3 {
     &>*:not(:last-child) {
       padding-bottom: calc(var(--spacing) * 3);
+    }
+  }
+  .\[\.active_\&\]\:-rotate-90 {
+    .active & {
+      rotate: calc(90deg * -1);
+    }
+  }
+  .\[\.active_\&\]\:rotate-90 {
+    .active & {
+      rotate: 90deg;
+    }
+  }
+  .\[\.active_\&\]\:rotate-135 {
+    .active & {
+      rotate: 135deg;
+    }
+  }
+  .\[\.active_\&\]\:rotate-175 {
+    .active & {
+      rotate: 175deg;
     }
   }
   .\[\.md-screen_\&\]\:w-1\/2 {
@@ -809,6 +843,10 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
@@ -830,6 +868,7 @@
       --tw-ring-offset-shadow: 0 0 #0000;
       --tw-outline-style: solid;
       --tw-duration: initial;
+      --tw-ease: initial;
     }
   }
 }
